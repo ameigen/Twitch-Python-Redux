@@ -16,7 +16,8 @@ class IRC(threading.Thread):
         self.port: int = port
         self.channels: List[str] = []
         self.nickname: str = nickname
-        self.password: str = 'oauth:' + password.lstrip('oauth:')
+        self.password: str = password if password.startswith(
+            'oauth:') else 'oauth:' + password
         self.active: bool = True
         self.incoming: Subject = Subject()
 
